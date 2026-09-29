@@ -1,0 +1,7 @@
+body_id,components,role,confidence
+RB0,"cam_orange + hand-side support",GROUND,HIGH
+RB1,"long_link_magenta + fork_purple","UPPER / DRIVE BODY",MEDIUM-HIGH
+RB2,"long_rail_blue + fork_green","GUIDED / LOWER BODY",HIGH
+RB3,pivot_plate,"CENTRAL CARRIER / ROCKER",MEDIUM-HIGH
+RB4,"link_orange (S-link)","DISTAL COUPLER",MEDIUM-HIGH
+RB5,tip_plate,"DISTAL OUTPUT / TIP",HIGH

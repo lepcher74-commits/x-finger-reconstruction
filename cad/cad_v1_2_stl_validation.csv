@@ -1,0 +1,13 @@
+file,watertight,faces,X_mm,Y_mm,Z_mm
+x_finger_CAD_v12_extended.stl,True,7292,150.311,30.156,9.6
+x_finger_CAD_v12_flexed.stl,True,7128,128.837,78.185,9.6
+part_input_bracket.stl,True,492,7.0,12.0,1.4
+part_upper_drive.stl,True,492,52.11,4.0,1.0
+part_lower_drive.stl,True,492,55.995,8.948,1.0
+part_pivot_block.stl,True,492,11.885,17.948,1.6
+part_main_rail_upper.stl,True,164,35.936,6.996,1.0
+part_distal_ground.stl,True,492,31.864,6.733,1.0
+part_distal_input.stl,True,492,38.999,11.71,1.0
+part_link35_coupler.stl,True,492,14.976,9.006,1.0
+part_pivot_head_arm.stl,True,492,23.111,14.983,1.0
+part_fingertip_link.stl,True,328,22.348,8.97,1.4

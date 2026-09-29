@@ -1,5 +1,21 @@
 # Changelog
 
+## KIN-ID v1.0
+
+- Added the first geometry promoted to IDENTIFIED_GEOMETRY.
+- Digitized five distal landmarks independently in two mirrored CAD views.
+- Registered both views with a 2D similarity transform.
+- Achieved 1.82 px RMS registration residual over an approximately 100 px datum.
+- Identified normalized distal segment ratios:
+  - 1.0000
+  - 0.3668
+  - 0.4290
+  - 0.6728
+- Added a parameterized distal CAD skeleton.
+- Kept absolute scale and exact patent-axis mapping pending.
+
+# Changelog
+
 ## KIN-ID v0.9 / CAD Prototype v0.3
 
 - Sampled promotional-video motion sequence at 150, 152, 154 and 155 s.

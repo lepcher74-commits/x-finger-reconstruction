@@ -1,0 +1,9 @@
+parameter,value,unit,status,notes
+P,1.0,pitch_unit,IDENTIFIED,master indexed-hole pitch; absolute mm unknown
+upper_pitch,1.006,pitch_unit,IDENTIFIED,25.30/25.15
+lower_pitch,0.994,pitch_unit,IDENTIFIED,25.00/25.15
+row_separation_apparent,2.15,pitch_unit,IDENTIFIED_FRAME_ONLY,perspective affected
+fastener_proximal,M1.4x5L,,CONFIRMED,assembly video; small variant notes 4L
+fastener_distal,M1.4x2L,,CONFIRMED,assembly video
+plate_thickness,,mm,PENDING,not metrically identified
+pivot_diameter,,mm,PENDING,not metrically identified

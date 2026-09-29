@@ -4,7 +4,7 @@ Reverse-engineering and parametric reconstruction of the mechanical, body-powere
 
 ## Current status
 
-**KIN-ID v0.6 / CAD Prototype v0.2**
+**KIN-ID v0.7 / CAD Prototype v0.3**
 
 The project separates:
 
@@ -24,13 +24,22 @@ A key audit correction is that **Bracket 2 is not part of Ground**: in the origi
 - **IDENTIFIED** — recovered consistently from multiple images/video frames.
 - **ESTIMATED** — current engineering hypothesis; not manufacturing data.
 
+## v0.7 / v0.3 additions
+
+- reproducible multi-frame KIN-ID fitting scaffold;
+- assembly-video observation register;
+- first metric seed parameter table;
+- parametric OpenSCAD prototype with two Z-separated adjustable branches;
+- confirmed assembly hardware constraints: M1.4×5L proximal, small-size 4L note, M1.4×2L distal.
+
 ## Caution
 
 This repository is an engineering/research reconstruction. Dimensions marked ESTIMATED must not be treated as original X-Finger production dimensions or as a clinically validated prosthetic design.
 
 ## Next steps
 
-- Joint identification of primary linkage geometry from patent figures, supplied photographs and videos.
-- Identify the distal four-bar around Link 35 / Pivot Head 33.
-- Recover discrete hole pitch and Z-offset stack.
-- Build CAD Prototype v0.3 with physical plates, pivots and adjustment geometry.
+- Digitize primary pivots from multiple video frames and photographs.
+- Fit one constant moving-base linkage across all selected poses.
+- Recover the distal Link 35 / Pivot Head 33 geometry.
+- Replace seed hole pitch / thickness / Z offsets with identified values.
+- Advance to CAD Prototype v0.4 with a true distal four-bar and interference checks.

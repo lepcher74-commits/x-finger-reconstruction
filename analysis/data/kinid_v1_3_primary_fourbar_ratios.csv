@@ -1,0 +1,5 @@
+quantity,upper_view_px,lower_view_px,mean_px,cross_view_disagreement_%,working_interpretation,normalized_by_AB
+AB / Q0-Q1,18.0277563773,19.2093727123,18.6185645448,6.346442,input bracket spacing,1.0
+AC / Q0-Q2,180.9419796509,177.3414785097,179.1417290803,2.009862,upper drive effective length,9.621672
+BD / Q1-Q3,195.1127878946,193.8788281376,194.4958080161,0.634440,lower drive effective length,10.446337
+CD / Q2-Q3,38.4187454246,41.1096095822,39.7641775034,6.767056,Pivot Block articulation spacing,2.135727

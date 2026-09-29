@@ -1,0 +1,13 @@
+parameter,value_mm,status,source_or_note
+hole_pitch,5.0,ESTIMATED,seed from image-ratio study; not calibrated
+hole_d,1.6,ESTIMATED,clearance seed for M1.4
+bar_width,6.5,ESTIMATED,visual seed
+plate_thickness,1.2,ESTIMATED,visual/manufacturing seed
+AB_spacing,10.0,ESTIMATED,prototype seed
+branch_length,35.0,ESTIMATED,prototype seed
+phalanx_length,34.0,ESTIMATED,prototype seed
+distal_length,18.0,ESTIMATED,prototype seed
+proximal_fastener_nominal,1.4,CONFIRMED,assembly video
+proximal_fastener_length,5.0,CONFIRMED,assembly video; small uses 4L
+distal_fastener_nominal,1.4,CONFIRMED,assembly video
+distal_fastener_length,2.0,CONFIRMED,assembly video

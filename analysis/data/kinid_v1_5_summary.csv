@@ -1,0 +1,11 @@
+quantity,value,unit,status
+motion_sweep_min,-35,deg,TESTED
+motion_sweep_max,25,deg,TESTED
+motion_step,1,deg,TESTED
+collision_poses,0,count,TESTED
+minimum_useful_face_clearance,0.50,mm,TESTED_ON_CURRENT_Z_STACK
+clearance_target,0.30,mm,DESIGN_TARGET
+upper_drive_center_z,1.5,mm,BOUNDED_DESIGN
+lower_drive_center_z,-1.5,mm,BOUNDED_DESIGN
+outer_rail_center_z,3.0,mm,BOUNDED_DESIGN
+outer_rail_negative_center_z,-3.0,mm,BOUNDED_DESIGN

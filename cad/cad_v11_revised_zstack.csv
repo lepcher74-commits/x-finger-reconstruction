@@ -1,0 +1,5 @@
+upper,lower,raw_face_gap_mm,washer_allowance_mm,residual_clearance_mm,meets_0_30_target
+upper_outer,upper_drive,0.6000,0.3000,0.3000,True
+upper_drive,pivot_block,0.6000,0.3000,0.3000,True
+pivot_block,lower_drive,0.6000,0.3000,0.3000,True
+lower_drive,lower_outer,0.6000,0.3000,0.3000,True

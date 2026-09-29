@@ -1,5 +1,14 @@
 # Changelog
 
+## KIN-ID v0.9 / CAD Prototype v0.3
+
+- Sampled promotional-video motion sequence at 150, 152, 154 and 155 s.
+- Added preliminary manual centerline/pivot-chain picks.
+- Added normalized motion-envelope analysis.
+- Introduced an OBSERVED / LOW confidence class for occluded motion-frame measurements.
+- Prevented low-confidence motion picks from overriding master CAD dimensions.
+- Defined the acceptance gate for future O/A/B/C/D multi-pose identification.
+
 ## KIN-ID v0.7 / CAD Prototype v0.3
 
 - Added multi-frame Procrustes-based linkage identification scaffold.

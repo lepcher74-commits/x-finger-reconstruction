@@ -1,0 +1,5 @@
+frame_s,prox_segment_px,middle_segment_px,distal_segment_px,relative_joint_1_deg,relative_joint_2_deg,confidence
+150,60.406,46.573,60.033,-7.132,16.326,LOW - manual/occluded
+152,70.000,53.141,60.008,-19.799,19.601,LOW - manual/occluded
+154,68.000,78.492,91.263,18.072,-12.509,LOW - manual/occluded
+155,73.824,53.151,71.589,18.316,24.120,LOW - manual/occluded

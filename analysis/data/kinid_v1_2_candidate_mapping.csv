@@ -1,0 +1,5 @@
+landmark,candidate_patent_mapping,confidence,reason
+R0,11 or 13b,HIGH,"Rigid with R1/R2 across poses; lies at main articulation cluster."
+R1,13b or 11,HIGH,"Rigid with R0/R2 across poses; second Pivot Block articulation axis candidate."
+R2,22/25 structural fastener region,MEDIUM-HIGH,"Rigid with R0/R1; patent states screws 22 and 25 fasten Pivot Block 10 to outer phalange 18."
+R3,moving drive/stirrup pivot candidate,LOW-MEDIUM,"Fails rigid-body invariance; likely belongs to a different moving link or was mis-picked."

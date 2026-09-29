@@ -1,0 +1,12 @@
+parameter,unit,nominal,lower,upper,status
+adjustment_hole_pitch_P,mm,5.0,4.0,6.0,BOUNDED_ESTIMATE
+primary_AB,mm,5.0,4.0,6.0,DERIVED_FROM_P
+primary_AC,mm,48.1,38.5,57.7,IDENTIFIED_RATIO+SCALE_BOUND
+primary_BD,mm,52.2,41.8,62.7,IDENTIFIED_RATIO+SCALE_BOUND
+primary_CD,mm,10.7,8.5,12.8,IDENTIFIED_RATIO+SCALE_BOUND
+adjustment_bar_width,mm,4.0,3.2,4.8,BOUNDED_ESTIMATE
+plate_thickness,mm,1.0,0.8,1.2,BOUNDED_ESTIMATE
+upper_lower_center_Z,mm,3.0,2.4,3.6,BOUNDED_ESTIMATE
+M1.4_clearance_hole_preview,mm,1.8,1.8,1.8,DESIGN_REFERENCE
+proximal_screw_length,mm,5.0,5.0,5.0,CONFIRMED
+distal_screw_length,mm,2.0,2.0,2.0,CONFIRMED

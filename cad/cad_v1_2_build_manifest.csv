@@ -1,0 +1,11 @@
+parameter,value,status,note
+distal_topology,H1,CONFIRMED_TOPOLOGY,Patent chain 7a/37 -> Link35 -> 34 -> PivotHead33/32
+primary_input_range,-35..0 deg,VALIDATED_CLOSURE,distal closure valid throughout working branch
+AB,5.0 mm,SCALE_BOUND,not factory dimension
+AC,48.11 mm,IDENTIFIED_RATIO + SCALE_BOUND,
+BD,52.23 mm,IDENTIFIED_RATIO + SCALE_BOUND,
+CD,10.68 mm,IDENTIFIED_RATIO + SCALE_BOUND,
+distal_ground_CE,26.92 mm,IDENTIFIED_RATIO + COMMON-RENDER SCALE,
+distal_input_CF,35.84 mm,IDENTIFIED_RATIO + COMMON-RENDER SCALE,
+distal_coupler_FG,12.06 mm,IDENTIFIED_RATIO + COMMON-RENDER SCALE,
+distal_output_EG,22.04 mm,IDENTIFIED_RATIO + COMMON-RENDER SCALE,

@@ -4,7 +4,7 @@ Reverse-engineering and parametric reconstruction of the mechanical, body-powere
 
 ## Current status
 
-**KIN-ID v0.7 / CAD Prototype v0.3**
+**KIN-ID v0.9 / CAD Prototype v0.3**
 
 The project separates:
 
@@ -22,24 +22,23 @@ A key audit correction is that **Bracket 2 is not part of Ground**: in the origi
 
 - **CONFIRMED** — directly documented or clearly visible in source material.
 - **IDENTIFIED** — recovered consistently from multiple images/video frames.
+- **OBSERVED / LOW** — visible trend or manual pick with insufficient geometric certainty.
 - **ESTIMATED** — current engineering hypothesis; not manufacturing data.
 
-## v0.7 / v0.3 additions
+## Current identification results
 
-- reproducible multi-frame KIN-ID fitting scaffold;
-- assembly-video observation register;
-- first metric seed parameter table;
-- parametric OpenSCAD prototype with two Z-separated adjustable branches;
-- confirmed assembly hardware constraints: M1.4×5L proximal, small-size 4L note, M1.4×2L distal.
+- repeated upper/lower adjustment-hole pitch is internally consistent in the assembly-video closeup;
+- promotional-video frames 150–155 s confirm the expected coupled flexion trend;
+- those motion-frame joint picks remain LOW-confidence because of overlap and occlusion and are not allowed to drive manufacturing dimensions.
 
 ## Caution
 
-This repository is an engineering/research reconstruction. Dimensions marked ESTIMATED must not be treated as original X-Finger production dimensions or as a clinically validated prosthetic design.
+This repository is an engineering/research reconstruction. Dimensions marked ESTIMATED or OBSERVED must not be treated as original X-Finger production dimensions or as a clinically validated prosthetic design.
 
 ## Next steps
 
-- Digitize primary pivots from multiple video frames and photographs.
-- Fit one constant moving-base linkage across all selected poses.
-- Recover the distal Link 35 / Pivot Head 33 geometry.
-- Replace seed hole pitch / thickness / Z offsets with identified values.
-- Advance to CAD Prototype v0.4 with a true distal four-bar and interference checks.
+- Select isolated-finger frames with directly visible pivots.
+- Fit constant rigid lengths across at least three poses.
+- Recover O/A/B/C/D first; then E/F/G distal geometry.
+- Promote parameters to IDENTIFIED only after cross-frame consistency checks.
+- Advance the CAD model only from IDENTIFIED or explicitly labelled prototype assumptions.

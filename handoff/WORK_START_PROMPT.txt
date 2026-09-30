@@ -1,0 +1,21 @@
+You are taking over the X-Finger Reconstruction project in Work mode.
+
+Use the connected GitHub repository `lepcher74-commits/x-finger-reconstruction`.
+
+Read `handoff/WORK_HANDOFF.md` first, then `handoff/CAD_V2_AUDIT.md`.
+
+Your mission is to lead the project from the existing research reconstruction to `CAD v3.0 Manufacturing Reconstruction`.
+
+Important:
+- Do not trust CAD v2.0 as manufacturing geometry.
+- Reconstruct the assembly ontology before editing geometry.
+- Separate every physical part.
+- Separate physical-part count from rigid-body count.
+- Model every functional pivot explicitly.
+- Preserve evidence confidence labels.
+- Use primary patent/photos/videos over secondary renders.
+- Never promote a guessed dimension to confirmed.
+- Keep GitHub as the single source of project truth.
+- Commit each major milestone with clear changelog entries.
+
+Start by producing the v3.0 audit artifacts defined in WORK_HANDOFF.md.

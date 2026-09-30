@@ -1,0 +1,9 @@
+observation,images,status,engineering_action
+"Upper/lower perforated bars are distinct adjustable members","A;B;D;E;G","HIGH (secondary source)","Use for topology/layer ordering; not original dimensions."
+"Perforated members use overlapping adjustable sections fixed by paired screws","A;B;D;E","HIGH (secondary source)","Confirms fitting DOF is locked during operation."
+"Forked/clevis construction uses paired cheeks around central links","A;D;E;F","HIGH (secondary source)","Several doubled plates are one kinematic body."
+"Central distal carrier is a sandwich assembly with multiple through pivots","A;F;H;I","HIGH (secondary source)","Supports stacked carrier and separate pivot axes."
+"Tip shell consists of articulated external cover pieces","A;H;I","HIGH (secondary source)","Keep shell geometry separate from core linkage."
+"Three rendered motion states show coupled primary/distal flexion","G","MEDIUM-HIGH (secondary source)","Qualitative validation only."
+"Previous proximal cam/slot interpretation","D;E;G","LOW / NOT SUPPORTED","Demote and return to pivoted-link model."
+"Exact screw standard/diameter from render","A-F;H;I","NOT IDENTIFIED","Do not infer metric hardware from render proportions."

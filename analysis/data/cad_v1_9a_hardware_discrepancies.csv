@@ -1,0 +1,4 @@
+hardware,source_evidence,current_model_check,action,status
+M1.4x2L,CONFIRMED in assembly video,No current v1.9 stack <=2.0 mm,Do not force onto J7; identify exact original thin/tapped distal joint,OPEN
+M1.4x5L,CONFIRMED in assembly video,Compatible with 3.2 mm clevis stacks,Retain for proximal/clevis prototype candidates,ACCEPTED AS FAMILY
+M1.4x4L,Confirmed note for small version,Compatible with 2.6-3.4 mm prototype stacks,Use where reserve >=0.5 mm,CANDIDATE

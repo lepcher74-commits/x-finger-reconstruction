@@ -1,0 +1,9 @@
+joint_id,description,thread,stack_mm,candidate_screw_length_mm,length_reserve_mm,status
+J0,upper proximal drive pivot,M1.4,3.20,5.0,1.80,CONFIRMED FAMILY / CANDIDATE APPLICATION
+J1,lower proximal drive pivot,M1.4,3.20,5.0,1.80,CONFIRMED FAMILY / CANDIDATE APPLICATION
+J2,upper clevis -> central rocker,M1.4,3.20,5.0,1.80,DESIGN CANDIDATE
+J3,lower clevis -> central rocker,M1.4,3.20,5.0,1.80,DESIGN CANDIDATE
+J4,distal input rocker pivot,M1.4,3.20,5.0,1.80,DESIGN CANDIDATE
+J5,distal S-link coupler pivot,M1.4,2.60,4.0,1.40,DESIGN CANDIDATE
+J6,distal output / tip rocker pivot,M1.4,3.40,4.0,0.60,DESIGN CANDIDATE
+J7,tip shell / cover hinge,M1.4,2.20,4.0,1.80,DESIGN CANDIDATE; 2L MAPPING REJECTED

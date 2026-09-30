@@ -1,0 +1,8 @@
+joint_id,body_a,body_b,type,mapping,confidence
+D0,B5,B2,REVOLUTE,Pivot plate P0 ↔ one purple-fork hole,HIGH
+D1,B2,B6,REVOLUTE,second purple-fork hole ↔ one orange S-link hole,HIGH
+D2,B6,B7,REVOLUTE,other orange S-link hole ↔ secondary tip hole,HIGH
+D3,B7,B5,REVOLUTE,primary tip hole ↔ Pivot plate P1,HIGH
+PLOW,B5,B4,REVOLUTE,third Pivot plate hole P2 ↔ green fork / primary lower branch,MEDIUM-HIGH
+PUP,B1,B2,PIN/FORK REVOLUTE,magenta link end ↔ purple-fork prongs,MEDIUM-HIGH
+PBLUE,B3,B4,PIN/FORK REVOLUTE,blue rail end ↔ green-fork prongs,MEDIUM-HIGH

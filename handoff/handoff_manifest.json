@@ -1,0 +1,13 @@
+{
+  "project": "X-Finger Reconstruction",
+  "target": "CAD v3.0 Manufacturing Reconstruction",
+  "repository": "lepcher74-commits/x-finger-reconstruction",
+  "handoff_version": "1.0",
+  "current_reference_release": "CAD v2.0 RC",
+  "core_warning": "Do not treat v2.0 RC as manufacturing-valid.",
+  "files": [
+    "WORK_HANDOFF.md",
+    "CAD_V2_AUDIT.md",
+    "WORK_START_PROMPT.txt"
+  ]
+}

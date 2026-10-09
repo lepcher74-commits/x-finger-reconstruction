@@ -1,0 +1,85 @@
+name: OpenCode
+on:
+  issue_comment:
+    types: [created]
+  workflow_dispatch:
+    inputs:
+      check_only:
+        description: Check configuration without calling a model
+        type: boolean
+        default: true
+      prompt:
+        description: Task for OpenCode
+        type: string
+        default: Read README.md and report the repository purpose. Do not modify files.
+  push:
+    paths:
+      - .github/workflows/opencode.yml
+permissions:
+  contents: read
+concurrency:
+  group: opencode-${{ github.event.issue.number || github.run_id }}
+  cancel-in-progress: false
+jobs:
+  configuration:
+    if: >-
+      github.event_name != 'issue_comment' ||
+      (github.event.comment.user.login == github.repository_owner &&
+       startsWith(github.event.comment.body, '/opencode '))
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    outputs:
+      ready: ${{ steps.check.outputs.ready }}
+    steps:
+      - name: Check configuration without exposing credentials
+        id: check
+        env:
+          MODEL: ${{ vars.OPENCODE_MODEL }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
+        shell: bash
+        run: |
+          ready=false
+          case "$MODEL" in
+            openai/*) [ -n "$OPENAI_API_KEY" ] && ready=true ;;
+            anthropic/*) [ -n "$ANTHROPIC_API_KEY" ] && ready=true ;;
+            opencode/*) [ -n "$OPENCODE_API_KEY" ] && ready=true ;;
+          esac
+          echo "ready=$ready" >> "$GITHUB_OUTPUT"
+          if [ "$ready" = true ]; then
+            echo "Configuration present; model access has not been tested." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "::warning::Set OPENCODE_MODEL repository variable and the matching provider API secret."
+            echo "Setup incomplete: set OPENCODE_MODEL and matching OPENAI_API_KEY, ANTHROPIC_API_KEY or OPENCODE_API_KEY. No model was called." >> "$GITHUB_STEP_SUMMARY"
+          fi
+  execute:
+    needs: configuration
+    if: >-
+      needs.configuration.outputs.ready == 'true' &&
+      (github.event_name == 'issue_comment' ||
+       (github.event_name == 'workflow_dispatch' && !inputs.check_only))
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+          persist-credentials: false
+      - name: Run OpenCode
+        uses: anomalyco/opencode/github@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
+        with:
+          use_github_token: true
+          model: ${{ vars.OPENCODE_MODEL }}
+          share: false
+          mentions: /opencode
+          prompt: ${{ github.event_name == 'workflow_dispatch' && inputs.prompt || '' }}

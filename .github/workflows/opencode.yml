@@ -65,11 +65,24 @@ jobs:
       contents: write
       pull-requests: write
       issues: write
+      actions: read
     steps:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 1
           persist-credentials: false
+      - name: Configure Git author
+        run: |
+          git config user.name "opencode[bot]"
+          git config user.email "opencode@users.noreply.github.com"
+      - name: Restore completed contour validation
+        if: github.event.issue.number == 5
+        uses: actions/download-artifact@v4
+        with:
+          name: cad-validation-38022132891
+          run-id: 38022132891
+          github-token: ${{ github.token }}
+          path: validation/
       - name: Run OpenCode
         uses: anomalyco/opencode/github@latest
         env:

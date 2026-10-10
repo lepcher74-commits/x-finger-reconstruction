@@ -1,0 +1,9 @@
+check 0 collisions 0 max 0
+check 10 collisions 0 max 0
+check 20 collisions 0 max 0
+check 30 collisions 0 max 0
+check 40 collisions 0 max 0
+check 50 collisions 0 max 0
+check 60 collisions 0 max 0
+check 70 collisions 0 max 0
+DONE 0 0 None

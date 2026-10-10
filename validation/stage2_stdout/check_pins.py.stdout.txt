@@ -1,0 +1,6 @@
+pins 0 errors 0
+pins 15 errors 0
+pins 30 errors 0
+pins 45 errors 0
+pins 60 errors 0
+pins done 0

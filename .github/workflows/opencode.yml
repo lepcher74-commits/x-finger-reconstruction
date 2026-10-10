@@ -83,3 +83,13 @@ jobs:
           share: false
           mentions: /opencode
           prompt: ${{ github.event_name == 'workflow_dispatch' && inputs.prompt || '' }}
+
+      - name: Preserve CAD validation results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cad-validation-${{ github.run_id }}
+          path: |
+            validation/
+          if-no-files-found: ignore
+          retention-days: 14

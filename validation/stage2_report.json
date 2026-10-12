@@ -1,0 +1,382 @@
+{
+  "stage": 2,
+  "title": "Проверка сборки V4 в 74 положениях: тела, оси, штифты, серая внутри жёлтой, жёсткая связь с P07, необходимость выреза P04",
+  "generated_utc": "2026-10-10T04:20:24.850672+00:00",
+  "scope": "кандидат = воспроизведение этапа 1 (P07/P04 по красному контуру, остальные 7 деталей = V3); ручная проверка пакета, без изготовления",
+  "commands": [
+    "tar -xzf handoff/current_assembly.tar.gz",
+    "pip install -r validation/requirements.txt",
+    "python3 validation/stage1_reproduce_red_contour.py",
+    "python3 validation/stage2_verify_assembly.py"
+  ],
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+    "executable": "/usr/bin/python3",
+    "cadquery": "2.8.0",
+    "cadquery-ocp": "7.9.3.1.1",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "shapely": "2.2.0",
+    "pillow": "12.3.0",
+    "matplotlib": "3.11.2"
+  },
+  "stages": {
+    "setup": {
+      "copied_parts": [
+        "P01_black.step",
+        "P02_blue.step",
+        "P03_orange.step",
+        "P04_green.step",
+        "P05_purple.step",
+        "P06_pink.step",
+        "P07_dark_blue.step",
+        "P08_gray.step",
+        "P09_yellow.step"
+      ],
+      "scripts": [
+        "verify_assembly.py",
+        "check_pins.py",
+        "present.py",
+        "make_viewer.py",
+        "contour_preview.py",
+        "red_contour.py"
+      ],
+      "parts_2d_v1": "validation/work/stage2/parts_2d_v1/geometry.json",
+      "ok": true
+    },
+    "motion": {
+      "frames": 74,
+      "body_deg_end": -108.9456124944393,
+      "tip_deg_end": -67.54572250853533
+    },
+    "verify_assembly.py": {
+      "command": "/usr/bin/python3 verify_assembly.py",
+      "cwd": "validation/work/stage2/assembly",
+      "returncode": 0,
+      "seconds": 48.378,
+      "stdout_tail": [
+        "check 30 collisions 0 max 0",
+        "check 40 collisions 0 max 0",
+        "check 50 collisions 0 max 0",
+        "check 60 collisions 0 max 0",
+        "check 70 collisions 0 max 0",
+        "DONE 0 0 None"
+      ],
+      "ok": true
+    },
+    "present.py": {
+      "command": "/usr/bin/python3 present.py",
+      "cwd": "validation/work/stage2/assembly",
+      "returncode": 0,
+      "seconds": 16.701,
+      "stdout_tail": [
+        "render 0",
+        "render done; joint error 3.779125595109386e-12",
+        "/home/runner/.local/lib/python3.12/site-packages/cadquery/utils.py:82: FutureWarning: save will be removed in the next release.",
+        "  warn(f\"{f.__name__} will be removed in the next release.\", FutureWarning)"
+      ],
+      "ok": true
+    },
+    "check_pins.py": {
+      "command": "/usr/bin/python3 check_pins.py",
+      "cwd": "validation/work/stage2/assembly",
+      "returncode": 0,
+      "seconds": 38.85,
+      "stdout_tail": [
+        "pins 0 errors 0",
+        "pins 15 errors 0",
+        "pins 30 errors 0",
+        "pins 45 errors 0",
+        "pins 60 errors 0",
+        "pins done 0"
+      ],
+      "ok": true
+    },
+    "make_viewer.py": {
+      "command": "/usr/bin/python3 make_viewer.py",
+      "cwd": "validation/work/stage2/assembly",
+      "returncode": 0,
+      "seconds": 0.025,
+      "stdout_tail": [],
+      "ok": true
+    },
+    "contour_preview.py": {
+      "command": "/usr/bin/python3 contour_preview.py",
+      "cwd": "validation/work/stage2/assembly",
+      "returncode": 0,
+      "seconds": 2.392,
+      "stdout_tail": [],
+      "ok": true
+    }
+  },
+  "checks": {
+    "body_collisions": {
+      "ok": true,
+      "frames": 74,
+      "pairs_per_frame": 36,
+      "threshold": 0.001,
+      "collisions": [],
+      "max_overlap": 0.0,
+      "worst": null,
+      "delivered_script_collisions": [],
+      "agrees_with_delivered": true
+    },
+    "pin_collisions": {
+      "ok": true,
+      "frames": 74,
+      "pin_radius": 4.8,
+      "collisions": [],
+      "delivered_script_collisions": []
+    },
+    "coaxial": {
+      "ok": true,
+      "frames": 74,
+      "max_coaxial_error": 3.779125595109386e-12,
+      "method": "расстояние между осями отверстий, вычисленными из метаданных отверстий (центры/radii) и кинематических трансформаций кадра; повторная экстракция цилиндров из STEP не выполнялась",
+      "worst": [
+        39,
+        "P06",
+        "P09"
+      ],
+      "tol": 1e-06,
+      "pairs": [
+        [
+          "P01",
+          0,
+          "P02",
+          0
+        ],
+        [
+          "P02",
+          1,
+          "P03",
+          0
+        ],
+        [
+          "P03",
+          1,
+          "P05",
+          0
+        ],
+        [
+          "P05",
+          1,
+          "P01",
+          2
+        ],
+        [
+          "P01",
+          1,
+          "P04",
+          0
+        ],
+        [
+          "P06",
+          0,
+          "P09",
+          0
+        ],
+        [
+          "P07",
+          0,
+          "P08",
+          0
+        ],
+        [
+          "P07",
+          1,
+          "P08",
+          1
+        ]
+      ]
+    },
+    "gray_darkblue_rigid": {
+      "ok": true,
+      "max_relative_transform_drift": 3.382183422218077e-11,
+      "tol": 1e-09,
+      "shared_pins": [
+        "J7",
+        "J8"
+      ],
+      "pin_radius": 4.8,
+      "hole_radius": 5.3,
+      "note": "две общие оси J7/J8 и постоянная относительная матрица P07->P08"
+    },
+    "gray_in_yellow": {
+      "ok": true,
+      "frames": 74,
+      "method": "габаритная проверка (bounding box серой внутри bounding box жёлтой по всем осях) + отсутствие пересечения тел; это не строгая проверка внутреннего контура или полости жёлтой",
+      "max_protrusion_beyond_envelope": 0.0,
+      "min_clearance_margin": 6.688497458800001,
+      "violations": []
+    },
+    "p04_cut_necessity": {
+      "ok": true,
+      "necessary": true,
+      "sufficient_in_candidate": true,
+      "minimal": true,
+      "v3_p04_vs_new_p07_max_interference_volume": 1061.559308139879,
+      "v3_p04_vs_new_p07_interference_bbox_max_pose": [
+        772.2028328342485,
+        784.2912383251085,
+        -643.4822171416893,
+        -616.1205545305628,
+        -29.0409654466,
+        27.0
+      ],
+      "v3_p04_vs_new_p07_interference_bbox_pose0": [
+        770.1649745596302,
+        777.2874054939997,
+        -499.77520118424536,
+        -471.9404974980971,
+        -29.0409654466,
+        27.000000000000007
+      ],
+      "v3_p04_vs_new_p07_interference_solids": 3,
+      "candidate_p04_vs_new_p07_max_interference_volume": 0.0,
+      "v3_p04_vs_v3_p07_max_interference_volume": 0.0,
+      "removed_material_volume_v3_minus_candidate": 1061.5593081390214,
+      "removed_material_bbox": [
+        770.164974559629,
+        777.287405494,
+        -499.7752011843,
+        -471.9404974981,
+        -29.0409654466,
+        27.0
+      ],
+      "removed_vs_interference_rel_diff": 8.07918594086559e-13,
+      "removed_bbox_matches_interference": true,
+      "interference_per_pose": [
+        1061.5593081378915,
+        1061.5593081383656,
+        1061.5593081376335,
+        1061.559308138013,
+        1061.5593081377788,
+        1061.5593081381255,
+        1061.5593081382203,
+        1061.5593081381314,
+        1061.559308137964,
+        1061.559308137644,
+        1061.559308137939,
+        1061.5593081378652,
+        1061.5593081381933,
+        1061.5593081377313,
+        1061.5593081383909,
+        1061.5593081383324,
+        1061.5593081380705,
+        1061.559308138217,
+        1061.5593081379332,
+        1061.5593081383468,
+        1061.559308137787,
+        1061.5593081385748,
+        1061.5593081383045,
+        1061.559308137978,
+        1061.5593081383586,
+        1061.5593081382167,
+        1061.5593081387253,
+        1061.5593081379411,
+        1061.5593081392753,
+        1061.5593081391514,
+        1061.5593081382121,
+        1061.5593081382767,
+        1061.5593081381548,
+        1061.559308137812,
+        1061.5593081375607,
+        1061.559308138201,
+        1061.5593081385944,
+        1061.5593081377735,
+        1061.5593081385875,
+        1061.559308139879,
+        1061.559308138011,
+        1061.5593081385155,
+        1061.5593081381835,
+        1061.5593081382315,
+        1061.5593081376167,
+        1061.559308138841,
+        1061.5593081392626,
+        1061.5593081381137,
+        1061.559308138471,
+        1061.5593081380064,
+        1061.5593081389825,
+        1061.559308137496,
+        1061.5593081380725,
+        1061.5593081379059,
+        1061.5593081379463,
+        1061.559308136747,
+        1061.5593081391244,
+        1061.5593081381949,
+        1061.559308137545,
+        1061.5593081386003,
+        1061.5593081372924,
+        1061.559308137999,
+        1061.559308138255,
+        1061.5593081380696,
+        1061.5593081382515,
+        1061.5593081381626,
+        1061.5593081379325,
+        1061.5593081386355,
+        1061.5593081376435,
+        1061.5593081383502,
+        1061.5593081385248,
+        1061.5593081374657,
+        1061.5593081380196,
+        1061.559308139112
+      ],
+      "conclusion": "вырез P04 необходим: новый язык P07 пересекает посадочное место V3; кандидат удаляет ровно этот объём и после выреза пересечения нет"
+    },
+    "preservation": {
+      "ok": true,
+      "untouched_parts_identical_to_v3": {
+        "P01_black.step": {
+          "identical_to_v3": true
+        },
+        "P02_blue.step": {
+          "identical_to_v3": true
+        },
+        "P03_orange.step": {
+          "identical_to_v3": true
+        },
+        "P05_purple.step": {
+          "identical_to_v3": true
+        },
+        "P06_pink.step": {
+          "identical_to_v3": true
+        },
+        "P08_gray.step": {
+          "identical_to_v3": true
+        },
+        "P09_yellow.step": {
+          "identical_to_v3": true
+        }
+      },
+      "shared_pink_darkblue_layer_z_overlap": 101.53052712309,
+      "p06_z_span": [
+        -74.70635869842,
+        26.84707302063
+      ],
+      "p07_z_span": [
+        -74.68345410246,
+        27.0
+      ],
+      "p07_z_span_preserved_vs_v3": true,
+      "yellow_placement_transforms_identical_to_v3": true,
+      "black_housing_full_u": {
+        "identical_to_v3": true,
+        "valid": true,
+        "single_solid": true,
+        "width": 208.15632479357413
+      }
+    }
+  },
+  "passed": true,
+  "artifacts": [
+    "assembly_motion_3d.gif",
+    "assembly_viewer_v4.html",
+    "assembly_preview.png",
+    "contour_comparison.png",
+    "collision_checks.json",
+    "pin_checks.json",
+    "joint_checks.json"
+  ]
+}

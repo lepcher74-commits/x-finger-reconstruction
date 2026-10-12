@@ -1,0 +1,91 @@
+{
+  "frame_note": "X finger axis, Y top/bottom (+Y grey upper, -Y blue lower), Z lateral sides; P04 axes/kinematics unchanged",
+  "assumed_values": {
+    "shell_t": 1.5,
+    "phalanx_r": 24.0,
+    "clearance": 2.0,
+    "y_axis": -452.89,
+    "z_axis": 0.0,
+    "x_start": 792.0,
+    "x_end": 872.0,
+    "gray_lo": 24.0,
+    "gray_hi": 156.0,
+    "blue_lo": 204.0,
+    "blue_hi": 336.0,
+    "rise": 6.0,
+    "n_slices": 25,
+    "embed": 0.5,
+    "leg_x0": 791.2,
+    "leg_x1": 802.0,
+    "leg_hw": 7.0,
+    "wall_x0": 791.2,
+    "wall_x1": 802.0,
+    "wall_z": 11.5,
+    "wall_half": 1.6,
+    "wall_y": [
+      -490.0,
+      -472.0
+    ],
+    "wall_z_out": 29.5,
+    "phantom_extra": 28.0,
+    "r_in": 26.0,
+    "r_out": 27.5,
+    "z_out": 29.5
+  },
+  "scale_note": "V4 model units, shell_t=1.5 is the issue value in model units, NOT calibrated physical mm",
+  "p04": {
+    "bbox": {
+      "x": [
+        659.44,
+        791.73
+      ],
+      "y": [
+        -510.21,
+        -395.57
+      ],
+      "z": [
+        -29.04,
+        29.04
+      ]
+    },
+    "solids": 1
+  },
+  "gray_upper": {
+    "bbox": {
+      "x": [
+        790.17,
+        873.83
+      ],
+      "y": [
+        -442.31,
+        -396.07
+      ],
+      "z": [
+        -25.12,
+        25.12
+      ]
+    },
+    "solids": 1,
+    "volume": 12345.24,
+    "valid": true
+  },
+  "blue_lower": {
+    "bbox": {
+      "x": [
+        790.17,
+        873.83
+      ],
+      "y": [
+        -490.0,
+        -457.47
+      ],
+      "z": [
+        -29.5,
+        29.5
+      ]
+    },
+    "solids": 1,
+    "volume": 14544.73,
+    "valid": true
+  }
+}

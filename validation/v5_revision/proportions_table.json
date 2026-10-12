@@ -1,0 +1,110 @@
+{
+  "note": "Reference view labels/axes are NOT identified (image not readable in this run).  Reference ratios use blue-pixel extents over green-pixel extents per cell; drawing error is not calibrated.",
+  "p04_green_cad": {
+    "dx": 132.29,
+    "dy": 114.64,
+    "dz": 58.08
+  },
+  "cad_shell_envelope": {
+    "P04_green": {
+      "dx": 132.29,
+      "dy": 114.64,
+      "dz": 58.08
+    },
+    "P10_gray_upper": {
+      "dx": 83.66,
+      "dy": 46.24,
+      "dz": 50.24
+    },
+    "P11_blue_lower": {
+      "dx": 83.66,
+      "dy": 32.53,
+      "dz": 59.0
+    }
+  },
+  "cad_ratio_shell_over_p04": {
+    "P10_gray_upper/P04": {
+      "dx": 0.63,
+      "dy": 0.4,
+      "dz": 0.87
+    },
+    "P11_blue_lower/P04": {
+      "dx": 0.63,
+      "dy": 0.28,
+      "dz": 1.02
+    }
+  },
+  "reference_views": [
+    {
+      "view": 1,
+      "cell_xyxy": [
+        40,
+        55,
+        265,
+        235
+      ],
+      "green_px_wh": [
+        15,
+        30
+      ],
+      "blue_px_wh": null
+    },
+    {
+      "view": 2,
+      "cell_xyxy": [
+        40,
+        240,
+        265,
+        420
+      ],
+      "green_px_wh": [
+        68,
+        52
+      ],
+      "blue_px_wh": [
+        111,
+        48
+      ],
+      "blue_w/green_w": 1.63,
+      "blue_h/green_h": 0.92
+    },
+    {
+      "view": 3,
+      "cell_xyxy": [
+        280,
+        250,
+        465,
+        430
+      ],
+      "green_px_wh": [
+        30,
+        30
+      ],
+      "blue_px_wh": [
+        118,
+        48
+      ],
+      "blue_w/green_w": 3.93,
+      "blue_h/green_h": 1.6
+    },
+    {
+      "view": 4,
+      "cell_xyxy": [
+        40,
+        425,
+        265,
+        575
+      ],
+      "green_px_wh": [
+        74,
+        31
+      ],
+      "blue_px_wh": [
+        113,
+        118
+      ],
+      "blue_w/green_w": 1.53,
+      "blue_h/green_h": 3.81
+    }
+  ]
+}

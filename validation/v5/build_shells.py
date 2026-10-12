@@ -30,6 +30,11 @@ import numpy as np
 import cadquery as cq
 from OCP.BRepAdaptor import BRepAdaptor_Surface
 from OCP.GeomAbs import GeomAbs_SurfaceType
+from OCP.BRepClass3d import BRepClass3d_SolidClassifier
+from OCP.IntCurvesFace import IntCurvesFace_ShapeIntersector
+from OCP.gp import gp_Lin, gp_Pnt, gp_Dir
+from OCP.TopAbs import TopAbs_State
+from OCP.BRepExtrema import BRepExtrema_DistShapeShape
 from PIL import Image, ImageDraw, ImageFont
 
 D = Path(__file__).resolve().parent
@@ -168,36 +173,133 @@ def cyl_radius(face):
     return None
 
 
-def shell_thickness(solid, target):
+def _inside(cls, pt):
+    cls.Perform(gp_Pnt(pt.x, pt.y, pt.z), 1e-6)
+    return cls.State() == TopAbs_State.TopAbs_IN
+
+
+def _ray_exit(solid, origin, direction):
+    """Distance from origin (inside the material) to the first boundary exit
+    along direction, measured by intersecting a ray with the solid."""
+    it = IntCurvesFace_ShapeIntersector()
+    it.Load(solid.wrapped, 1e-7)
+    it.Perform(gp_Lin(gp_Pnt(*origin), gp_Dir(*direction)), 1e-4, 1000.0)
+    o = cq.Vector(*origin)
+    d = cq.Vector(*direction).normalized()
+    ts = []
+    for i in range(1, it.NbPnt() + 1):
+        q = it.Pnt(i)
+        t = (cq.Vector(q.X(), q.Y(), q.Z()) - o).dot(d)
+        if t > 1e-4:
+            ts.append(t)
+    return min(ts) if ts else None
+
+
+def _radial(p, cyl):
+    ax = cyl.Axis()
+    loc, dr = ax.Location(), ax.Direction()
+    v = cq.Vector(p.x - loc.X(), p.y - loc.Y(), p.z - loc.Z())
+    dd = cq.Vector(dr.X(), dr.Y(), dr.Z()).normalized()
+    return v.sub(dd.multiply(v.dot(dd))).normalized()
+
+
+def shell_thickness(solid, target, n=6):
+    """Wall thickness measured directly along the surface normal.
+
+    For every sampled point on the cylindrical shell walls a ray is marched
+    into the material (outward from an inner wall, inward from an outer wall)
+    and the distance to the first boundary exit is taken.  This is a real
+    measurement, not `r_out - r_in`.
+
+    Two face-distance figures are also reported to expose the earlier
+    contradiction: `face_dist_cross_slice` is the minimum over ALL inner/outer
+    face pairs (this is the 1.06398 in the old report, a *wrong pair* between
+    neighbouring slices whose axes are shifted by the cradle lift), while
+    `face_dist_coaxial` restricts the pairs to faces sharing one cylinder axis
+    (the true, same-wall gap).
+    """
+    cls = BRepClass3d_SolidClassifier(solid.wrapped)
     cyl = {}
     for f in solid.Faces():
-        r = cyl_radius(f)
-        if r is not None:
-            cyl.setdefault(round(r, 3), []).append(f)
+        ad = BRepAdaptor_Surface(f.wrapped)
+        if ad.GetType() == GeomAbs_SurfaceType.GeomAbs_Cylinder:
+            cyl.setdefault(round(ad.Cylinder().Radius(), 3), []).append((f, ad.Cylinder()))
     radii = sorted(cyl)
     if len(radii) < 2:
-        return dict(target=target, radii=radii, estimated=None, error=None)
+        return dict(target=target, radii=radii, error=None,
+                    method='no pair of wall cylinders found')
+
+    # minimum inner/outer face distance, all pairs vs coaxial pairs
+    def axis_key(c):
+        ax = c.Axis(); loc, dr = ax.Location(), ax.Direction()
+        return (round(loc.X(), 1), round(loc.Y(), 1), round(loc.Z(), 1),
+                round(dr.X(), 3), round(dr.Y(), 3), round(dr.Z(), 3))
     r_in, r_out = radii[0], radii[-1]
-    a_in = sum(f.Area() for f in cyl[r_in])
-    a_out = sum(f.Area() for f in cyl[r_out])
-    gaps = []
-    for fi in cyl[r_in]:
-        for fo in cyl[r_out]:
+    d_cross, d_coax = None, None
+    for fi, ci in cyl[r_in]:
+        ki = axis_key(ci)
+        for fo, co in cyl[r_out]:
             try:
-                gaps.append(fi.distance(fo))
+                d = fi.distance(fo)
             except Exception:
-                pass
-    normal_gap = min(gaps) if gaps else None
-    return dict(target=target, radii=radii,
-                r_in=r_in, r_out=r_out,
-                estimated=round(r_out - r_in, 6),
-                normal_face_distance=round(float(normal_gap), 6)
-                if normal_gap is not None else None,
-                error=round(abs((r_out - r_in) - target), 6),
-                wall_area_out=round(a_out, 3), wall_area_in=round(a_in, 3),
-                method='r_out - r_in on the shell cylindrical walls, confirmed '
-                       'by the minimum inner/outer wall face distance; the leg '
-                       'and the side walls are excluded')
+                continue
+            d_cross = d if d_cross is None else min(d_cross, d)
+            if axis_key(co) == ki:
+                d_coax = d if d_coax is None else min(d_coax, d)
+
+    # direct normal-ray thickness on the walls, with zones along x
+    samples = []
+    for r, faces in cyl.items():
+        for f, c in faces:
+            ad = BRepAdaptor_Surface(f.wrapped)
+            u0, u1 = ad.FirstUParameter(), ad.LastUParameter()
+            v0, v1 = ad.FirstVParameter(), ad.LastVParameter()
+            for iu in range(n + 1):
+                for iv in range(n + 1):
+                    u = u0 + (u1 - u0) * (0.1 + 0.8 * iu / n)
+                    v = v0 + (v1 - v0) * (0.1 + 0.8 * iv / n)
+                    p = f.positionAt(u, v)
+                    rad = _radial(p, c)
+                    d = rad if _inside(cls, p.add(rad.multiply(0.12))) else rad.multiply(-1.0)
+                    if not _inside(cls, p.add(d.multiply(0.12))):
+                        continue
+                    t = _ray_exit(solid, p.add(d.multiply(0.05)), (d.x, d.y, d.z))
+                    if t is None:
+                        continue
+                    samples.append((t + 0.05, r, p.x, p.z))
+    if not samples:
+        return dict(target=target, radii=radii, error=None,
+                    method='no wall samples could be measured')
+    samples.sort()
+    tv = [s[0] for s in samples]
+    xmin = min(s[2] for s in samples); xmax = max(s[2] for s in samples)
+    zones = []
+    for b in range(6):
+        lo = xmin + (xmax - xmin) * b / 6
+        hi = xmin + (xmax - xmin) * (b + 1) / 6
+        z = [s[0] for s in samples if lo <= s[2] <= hi]
+        if z:
+            zones.append(dict(x=[round(lo, 1), round(hi, 1)],
+                              min=round(min(z), 4), max=round(max(z), 4)))
+    return dict(
+        target=target, radii=radii, r_in=r_in, r_out=r_out,
+        nominal=round(r_out - r_in, 6),
+        measured_min=round(samples[0][0], 4),
+        measured_max=round(samples[-1][0], 4),
+        measured_mean=round(sum(tv) / len(tv), 4),
+        n_samples=len(samples),
+        measured_min_zone=dict(x=round(samples[0][2], 2), z=round(samples[0][3], 2),
+                               r=samples[0][1]),
+        face_dist_cross_slice=round(float(d_cross), 6) if d_cross is not None else None,
+        face_dist_coaxial=round(float(d_coax), 6) if d_coax is not None else None,
+        zones=zones,
+        error=round(abs((r_out - r_in) - target), 6),
+        method='thickness measured along the wall normal by ray march (min/max/mean '
+               'over samples, zoned by x); r_out-r_in reported only as the nominal '
+               'construction value. face_dist_cross_slice is the min over ALL '
+               'inner/outer face pairs and is a wrong pair between cradle-shifted '
+               'slices; face_dist_coaxial is the same-wall gap (0.5 weld and leg/'
+               'side-wall material excluded from the wall statistic).')
 
 
 # ---------------------------------------------------------------------------
@@ -314,6 +416,23 @@ def transform(solid, t):
     return solid.rotate((0, 0, 0), (0, 0, 1), a).translate((x, y, 0.0))
 
 
+def _closest_to(parts, other):
+    """Closest-point coordinates between each shell and another body, so the
+    reported minimum distance is traceable to a location."""
+    res = {}
+    for name, s in parts.items():
+        try:
+            d = BRepExtrema_DistShapeShape(s.wrapped, other.wrapped)
+            d.Perform()
+            p1, p2 = d.PointOnShape1(1), d.PointOnShape2(1)
+            res[name] = dict(distance=round(float(d.Value()), 4),
+                             on_shell=[round(p1.X(), 2), round(p1.Y(), 2), round(p1.Z(), 2)],
+                             on_phantom=[round(p2.X(), 2), round(p2.Y(), 2), round(p2.Z(), 2)])
+        except Exception as exc:
+            res[name] = dict(error=str(exc))
+    return res
+
+
 def overlap_volume(a, b):
     ba, bb = a.BoundingBox(), b.BoundingBox()
     if any(getattr(ba, k + 'max') < getattr(bb, k + 'min') or
@@ -372,8 +491,12 @@ def main():
         'radial_clearance_param': P['clearance'],
         'min_solid_distance_to_phantom': {
             n: round(float(s.distance(phantom)), 4) for n, s in parts.items()},
-        'note': 'phantom never intersects a shell in any pose; the minimum solid '
-                'distance also includes the back leg and the wall skirts'}
+        'min_distance_location': _closest_to(parts, phantom),
+        'note': 'the nominal RADIAL clearance is 2.0 on the circular walls, but the '
+                'absolute minimum solid distance is smaller because it is set by the '
+                'axial gap between the back leg / side-wall skirts and the proximal '
+                'cap of the assumed phantom (x~760), not by the wall radius. The '
+                'phantom is an assumed demo body; this gap is reported, not hidden.'}
 
     # connection to P04 (designed weld) and forbidden set -------------------
     conn = {n: round(float(s.distance(p4)), 4) for n, s in parts.items()}
@@ -466,7 +589,9 @@ def main():
     (OUT / 'shells_report.json').write_text(json.dumps(report, indent=2))
 
     print('validity:', report['validity'])
-    print('thickness:', {k: v.get('estimated') for k, v in report['thickness'].items()})
+    print('thickness:', {k: (v.get('measured_min'), v.get('measured_max'),
+                              v.get('face_dist_coaxial'), v.get('face_dist_cross_slice'))
+                         for k, v in report['thickness'].items()})
     print('open forbidden:', report['open_forbidden_count'],
           'intended P04 welds:', len(report['open_intended_contacts']))
     print('key poses:', report['key_poses'])

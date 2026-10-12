@@ -1,0 +1,8 @@
+{
+  "frames": 74,
+  "pairs_per_frame": 36,
+  "threshold": 0.001,
+  "collisions": [],
+  "max_overlap": 0,
+  "worst": null
+}

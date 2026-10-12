@@ -1,0 +1,312 @@
+{
+  "parameters": {
+    "shell_t": 1.5,
+    "phalanx_r": 24.0,
+    "clearance": 2.0,
+    "y_center": -420.0,
+    "z_ref": 29.0,
+    "x_start": 744.0,
+    "x_end": 824.0,
+    "gray_lo": -62.0,
+    "gray_hi": 62.0,
+    "blue_lo": 118.0,
+    "blue_hi": 242.0,
+    "rise": 6.0,
+    "n_slices": 25,
+    "wall_len": 1.6,
+    "wall_hi": 46.0,
+    "leg_hw": 7.0,
+    "leg_x0": 744.0,
+    "leg_x1": 760.0,
+    "blue_x0": 762.0,
+    "embed": 0.5,
+    "phantom_extra": 28.0,
+    "r_in": 26.0,
+    "r_out": 27.5,
+    "z_axis": 56.0
+  },
+  "thickness_target": 1.5,
+  "validity": {
+    "P10_gray_upper": {
+      "valid": true,
+      "solids": 1,
+      "volume": 19300.029,
+      "faces": 190
+    },
+    "P11_blue_lower": {
+      "valid": true,
+      "solids": 1,
+      "volume": 9865.1,
+      "faces": 206
+    }
+  },
+  "thickness": {
+    "P10_gray_upper": {
+      "target": 1.5,
+      "radii": [
+        26.0,
+        27.5
+      ],
+      "r_in": 26.0,
+      "r_out": 27.5,
+      "nominal": 1.5,
+      "measured_min": 1.5,
+      "measured_max": 55.6033,
+      "measured_mean": 5.0557,
+      "n_samples": 3038,
+      "measured_min_zone": {
+        "x": 755.87,
+        "z": 73.48,
+        "r": 27.5
+      },
+      "face_dist_cross_slice": 1.06398,
+      "face_dist_coaxial": 1.5,
+      "zones": [
+        {
+          "x": [
+            742.5,
+            756.4
+          ],
+          "min": 1.5,
+          "max": 55.6033
+        },
+        {
+          "x": [
+            756.4,
+            770.2
+          ],
+          "min": 1.5,
+          "max": 55.6033
+        },
+        {
+          "x": [
+            770.2,
+            784.0
+          ],
+          "min": 1.5,
+          "max": 1.5
+        },
+        {
+          "x": [
+            784.0,
+            797.8
+          ],
+          "min": 1.5,
+          "max": 1.5
+        },
+        {
+          "x": [
+            797.8,
+            811.7
+          ],
+          "min": 1.5,
+          "max": 1.5
+        },
+        {
+          "x": [
+            811.7,
+            825.5
+          ],
+          "min": 1.5,
+          "max": 1.5
+        }
+      ],
+      "error": 0.0,
+      "method": "thickness measured along the wall normal by ray march (min/max/mean over samples, zoned by x); r_out-r_in reported only as the nominal construction value. face_dist_cross_slice is the min over ALL inner/outer face pairs and is a wrong pair between cradle-shifted slices; face_dist_coaxial is the same-wall gap (0.5 weld and leg/side-wall material excluded from the wall statistic)."
+    },
+    "P11_blue_lower": {
+      "target": 1.5,
+      "radii": [
+        26.0,
+        27.5
+      ],
+      "r_in": 26.0,
+      "r_out": 27.5,
+      "nominal": 1.5,
+      "measured_min": 1.5,
+      "measured_max": 1.8812,
+      "measured_mean": 1.5828,
+      "n_samples": 2450,
+      "measured_min_zone": {
+        "x": 774.43,
+        "z": 32.99,
+        "r": 27.5
+      },
+      "face_dist_cross_slice": 1.5,
+      "face_dist_coaxial": 1.5,
+      "zones": [
+        {
+          "x": [
+            760.4,
+            771.3
+          ],
+          "min": 1.5,
+          "max": 1.631
+        },
+        {
+          "x": [
+            771.3,
+            782.1
+          ],
+          "min": 1.5,
+          "max": 1.681
+        },
+        {
+          "x": [
+            782.1,
+            793.0
+          ],
+          "min": 1.5,
+          "max": 1.7311
+        },
+        {
+          "x": [
+            793.0,
+            803.9
+          ],
+          "min": 1.5,
+          "max": 1.7811
+        },
+        {
+          "x": [
+            803.9,
+            814.7
+          ],
+          "min": 1.5,
+          "max": 1.8437
+        },
+        {
+          "x": [
+            814.7,
+            825.6
+          ],
+          "min": 1.5,
+          "max": 1.8812
+        }
+      ],
+      "error": 0.0,
+      "method": "thickness measured along the wall normal by ray march (min/max/mean over samples, zoned by x); r_out-r_in reported only as the nominal construction value. face_dist_cross_slice is the min over ALL inner/outer face pairs and is a wrong pair between cradle-shifted slices; face_dist_coaxial is the same-wall gap (0.5 weld and leg/side-wall material excluded from the wall statistic)."
+    }
+  },
+  "intersections_open": {
+    "P10_gray_upper": {
+      "P01": 0.0,
+      "P02": 0.0,
+      "P03": 0.0,
+      "P04": 91.89161,
+      "P05": 0.0,
+      "P06": 0.0,
+      "P07": 0.0,
+      "P08": 0.0,
+      "P09": 0.0,
+      "phantom": 0.0,
+      "P11_blue_lower": 0.0
+    },
+    "P11_blue_lower": {
+      "P01": 0.0,
+      "P02": 0.0,
+      "P03": 0.0,
+      "P04": 25.26137,
+      "P05": 0.0,
+      "P06": 0.0,
+      "P07": 0.0,
+      "P08": 0.0,
+      "P09": 0.0,
+      "phantom": 0.0,
+      "P10_gray_upper": 0.0
+    }
+  },
+  "open_forbidden_count": 0,
+  "open_forbidden_intersections": [],
+  "open_intended_contacts": [
+    [
+      "P10_gray_upper",
+      "P04",
+      91.89160624073654
+    ],
+    [
+      "P11_blue_lower",
+      "P04",
+      25.26137153277222
+    ]
+  ],
+  "open_collision_count": 0,
+  "phalanx_clearance": {
+    "assumed_phalanx_radius": 24.0,
+    "nominal_radial_clearance": 2.0,
+    "radial_clearance_param": 2.0,
+    "min_solid_distance_to_phantom": {
+      "P10_gray_upper": 0.1667,
+      "P11_blue_lower": 0.5749
+    },
+    "min_distance_location": {
+      "P10_gray_upper": {
+        "distance": 0.1667,
+        "on_shell": [
+          760.0,
+          -413.0,
+          79.26
+        ],
+        "on_phantom": [
+          760.17,
+          -413.0,
+          79.26
+        ]
+      },
+      "P11_blue_lower": {
+        "distance": 0.5749,
+        "on_shell": [
+          819.58,
+          -442.68,
+          51.71
+        ],
+        "on_phantom": [
+          819.58,
+          -442.15,
+          51.93
+        ]
+      }
+    },
+    "note": "the nominal RADIAL clearance is 2.0 on the circular walls, but the absolute minimum solid distance is smaller because it is set by the axial gap between the back leg / side-wall skirts and the proximal cap of the assumed phantom (x~760), not by the wall radius. The phantom is an assumed demo body; this gap is reported, not hidden."
+  },
+  "p04_connection": {
+    "distance": {
+      "P10_gray_upper": 0.0,
+      "P11_blue_lower": 0.0
+    },
+    "embed": 0.5,
+    "note": "designed weld into P04 top face"
+  },
+  "poses_checked": 74,
+  "pose_forbidden_count": 0,
+  "pose_forbidden_intersections": [],
+  "pose_intended_weld_count": 148,
+  "pose_collision_count": 0,
+  "pose_worst": {
+    "P10_gray_upper|P04": {
+      "volume": 91.89161,
+      "frame": 43
+    },
+    "P11_blue_lower|P04": {
+      "volume": 25.26137,
+      "frame": 41
+    }
+  },
+  "key_poses": {
+    "open": {
+      "frame": 0,
+      "forbidden": 0,
+      "intended_weld": 2
+    },
+    "mid": {
+      "frame": 37,
+      "forbidden": 0,
+      "intended_weld": 2
+    },
+    "closed": {
+      "frame": 73,
+      "forbidden": 0,
+      "intended_weld": 2
+    }
+  }
+}

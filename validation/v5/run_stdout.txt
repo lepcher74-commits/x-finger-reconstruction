@@ -1,0 +1,8 @@
+/home/runner/.local/lib/python3.12/site-packages/cadquery/utils.py:82: FutureWarning: save will be removed in the next release.
+  warn(f"{f.__name__} will be removed in the next release.", FutureWarning)
+validity: {'P10_gray_upper': {'valid': True, 'solids': 1, 'volume': 19300.029, 'faces': 190}, 'P11_blue_lower': {'valid': True, 'solids': 1, 'volume': 9865.1, 'faces': 206}}
+thickness: {'P10_gray_upper': (1.5, 55.6033, 1.5, 1.06398), 'P11_blue_lower': (1.5, 1.8812, 1.5, 1.5)}
+open forbidden: 0 intended P04 welds: 2
+key poses: {'open': {'frame': 0, 'forbidden': 0, 'intended_weld': 2}, 'mid': {'frame': 37, 'forbidden': 0, 'intended_weld': 2}, 'closed': {'frame': 73, 'forbidden': 0, 'intended_weld': 2}}
+pose forbidden: 0 / 74 poses; intended welds: 148
+pose worst: {'P10_gray_upper|P04': {'volume': 91.89161, 'frame': 43}, 'P11_blue_lower|P04': {'volume': 25.26137, 'frame': 41}}

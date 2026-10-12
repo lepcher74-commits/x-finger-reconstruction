@@ -1,0 +1,36 @@
+{
+  "assumptions": {
+    "note": "Parametric demonstration only. V4 scale is conventional; physical mm are not established and wearability is not claimed.",
+    "thickness": "1.5 (issue #7 value, applied along the surface normal)",
+    "phalanx": "assumed circular stump, radius 24.0, clearance 2.0",
+    "socket_axis": "along +X at y=-420.0, z=56.0 (finger centre line)",
+    "free_end": "+X, cradle raised by 6.0 at the free end",
+    "mount": "sits on the P04 top face (z=29.0), 0.5 weld embed"
+  },
+  "parameters": {
+    "shell_t": 1.5,
+    "phalanx_r": 24.0,
+    "clearance": 2.0,
+    "y_center": -420.0,
+    "z_ref": 29.0,
+    "x_start": 744.0,
+    "x_end": 824.0,
+    "gray_lo": -62.0,
+    "gray_hi": 62.0,
+    "blue_lo": 118.0,
+    "blue_hi": 242.0,
+    "rise": 6.0,
+    "n_slices": 25,
+    "wall_len": 1.6,
+    "wall_hi": 46.0,
+    "leg_hw": 7.0,
+    "leg_x0": 744.0,
+    "leg_x1": 760.0,
+    "blue_x0": 762.0,
+    "embed": 0.5,
+    "phantom_extra": 28.0,
+    "r_in": 26.0,
+    "r_out": 27.5,
+    "z_axis": 56.0
+  }
+}

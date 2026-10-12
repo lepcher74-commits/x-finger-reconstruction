@@ -1,0 +1,277 @@
+{
+  "stage": 1,
+  "title": "Воспроизведение изменения P07 по красному контуру из V3 (кандидат V4)",
+  "generated_utc": "2026-10-10T04:02:42.748239+00:00",
+  "scope": "только этап 1: воспроизведение красного контура, валидность и совпадение с V4; 74 положения, рендеринг и старый аудит не выполнялись",
+  "commands": [
+    "tar -xzf handoff/current_assembly.tar.gz",
+    "pip install -r validation/requirements.txt",
+    "python3 validation/stage1_reproduce_red_contour.py"
+  ],
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+    "executable": "/usr/bin/python3",
+    "cadquery": "2.8.0",
+    "cadquery-ocp": "7.9.3.1.1",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "shapely": "2.2.0",
+    "pillow": "12.3.0"
+  },
+  "stages": {
+    "setup": {
+      "ok": true,
+      "work_dir": "validation/work/reproduction",
+      "v3_parts_copied": [
+        "P01_black.step",
+        "P02_blue.step",
+        "P03_orange.step",
+        "P04_green.step",
+        "P05_purple.step",
+        "P06_pink.step",
+        "P07_dark_blue.step",
+        "P08_gray.step",
+        "P09_yellow.step"
+      ],
+      "v4_inputs": [
+        "red_contour.py",
+        "contour_reference.png"
+      ]
+    },
+    "apply_red_contour": {
+      "ok": true,
+      "command": "/usr/bin/python3 red_contour.py",
+      "cwd": "validation/work/reproduction",
+      "returncode": 0,
+      "seconds": 3.02,
+      "stdout": "registration 1.9926005617635614 3.141991347484728 rms 0.5616535896689118\nnew True 1",
+      "stdout_file": "validation/stage1_red_contour_stdout.txt"
+    }
+  },
+  "checks": {
+    "geometry": {
+      "P07_dark_blue.step": {
+        "valid": true,
+        "solids": 1,
+        "valid_expected": true,
+        "single_solid": true,
+        "repro_volume": 218402.74061273067,
+        "v4_volume": 218402.74061273056,
+        "v3_volume": 203415.33297086039,
+        "volume_rel_diff_vs_v4": 5.33030499069429e-16,
+        "symmetric_difference_volume_vs_v4": 0.0,
+        "bbox_max_abs_diff_vs_v4": 0.0,
+        "differs_from_v3": true,
+        "ok": true
+      },
+      "P04_green.step": {
+        "valid": true,
+        "solids": 1,
+        "valid_expected": true,
+        "single_solid": true,
+        "repro_volume": 250024.22059158114,
+        "v4_volume": 250024.22059158114,
+        "v3_volume": 251085.77989970375,
+        "volume_rel_diff_vs_v4": 0.0,
+        "symmetric_difference_volume_vs_v4": 0.0,
+        "bbox_max_abs_diff_vs_v4": 0.0,
+        "differs_from_v3": true,
+        "ok": true
+      }
+    },
+    "p07_holes": {
+      "ok": true,
+      "count_v3": 2,
+      "count_v4": 2,
+      "count_repro": 2,
+      "axis_tol": 1e-06,
+      "radius_tol": 1e-06,
+      "holes_v3": [
+        {
+          "radius": 5.3,
+          "axis_xy": [
+            1199.629691289,
+            -436.1836599593
+          ],
+          "axis_dir_z": -1.0,
+          "face_area": 445.1298345488209,
+          "z_span": [
+            -74.68345410246,
+            -61.31654589753
+          ]
+        },
+        {
+          "radius": 5.3,
+          "axis_xy": [
+            1246.370308711,
+            -449.8163400406
+          ],
+          "axis_dir_z": -1.0,
+          "face_area": 445.1298345488209,
+          "z_span": [
+            -74.68345410246,
+            -61.31654589753
+          ]
+        }
+      ],
+      "holes_v4": [
+        {
+          "radius": 5.3,
+          "axis_xy": [
+            1199.629691289,
+            -436.1836599593
+          ],
+          "axis_dir_z": -1.0,
+          "face_area": 445.1298345488209,
+          "z_span": [
+            -74.68345410246,
+            -61.31654589753
+          ]
+        },
+        {
+          "radius": 5.3,
+          "axis_xy": [
+            1246.370308711,
+            -449.8163400406
+          ],
+          "axis_dir_z": -1.0,
+          "face_area": 445.1298345488209,
+          "z_span": [
+            -74.68345410246,
+            -61.31654589753
+          ]
+        }
+      ],
+      "holes_repro": [
+        {
+          "radius": 5.3,
+          "axis_xy": [
+            1199.629691289,
+            -436.1836599593
+          ],
+          "axis_dir_z": -1.0,
+          "face_area": 445.1298345488209,
+          "z_span": [
+            -74.68345410246,
+            -61.31654589753
+          ]
+        },
+        {
+          "radius": 5.3,
+          "axis_xy": [
+            1246.370308711,
+            -449.8163400406
+          ],
+          "axis_dir_z": -1.0,
+          "face_area": 445.1298345488209,
+          "z_span": [
+            -74.68345410246,
+            -61.31654589753
+          ]
+        }
+      ],
+      "matches_to_v3": [
+        {
+          "repro": {
+            "radius": 5.3,
+            "axis_xy": [
+              1199.629691289,
+              -436.1836599593
+            ],
+            "axis_dir_z": -1.0,
+            "face_area": 445.1298345488209,
+            "z_span": [
+              -74.68345410246,
+              -61.31654589753
+            ]
+          },
+          "nearest_v3": {
+            "axis_xy_distance": 0.0,
+            "radius_diff": 0.0,
+            "v3_radius": 5.3,
+            "v3_z_span": [
+              -74.68345410246,
+              -61.31654589753
+            ]
+          }
+        },
+        {
+          "repro": {
+            "radius": 5.3,
+            "axis_xy": [
+              1246.370308711,
+              -449.8163400406
+            ],
+            "axis_dir_z": -1.0,
+            "face_area": 445.1298345488209,
+            "z_span": [
+              -74.68345410246,
+              -61.31654589753
+            ]
+          },
+          "nearest_v3": {
+            "axis_xy_distance": 0.0,
+            "radius_diff": 0.0,
+            "v3_radius": 5.3,
+            "v3_z_span": [
+              -74.68345410246,
+              -61.31654589753
+            ]
+          }
+        }
+      ]
+    },
+    "registration": {
+      "scale_repro": 1.9926005617635614,
+      "scale_v4": 1.9926005617635614,
+      "scale_diff": 0.0,
+      "angle_repro": 3.141991347484728,
+      "angle_v4": 3.141991347484728,
+      "angle_diff": 0.0,
+      "rms_repro": 0.5616535896689118,
+      "rms_v4": 0.5616535896689118,
+      "rms_diff": 0.0,
+      "contour_points_repro": 256,
+      "contour_points_v4": 256,
+      "contour_xy_max_abs_diff": 0.0,
+      "tol": 1e-06,
+      "contour_xy_tol": 1e-06,
+      "ok": true
+    },
+    "untouched_parts": {
+      "ok": true,
+      "parts": {
+        "P01_black.step": {
+          "identical_to_v3": true,
+          "ok": true
+        },
+        "P02_blue.step": {
+          "identical_to_v3": true,
+          "ok": true
+        },
+        "P03_orange.step": {
+          "identical_to_v3": true,
+          "ok": true
+        },
+        "P05_purple.step": {
+          "identical_to_v3": true,
+          "ok": true
+        },
+        "P06_pink.step": {
+          "identical_to_v3": true,
+          "ok": true
+        },
+        "P08_gray.step": {
+          "identical_to_v3": true,
+          "ok": true
+        },
+        "P09_yellow.step": {
+          "identical_to_v3": true,
+          "ok": true
+        }
+      }
+    }
+  },
+  "passed": true
+}

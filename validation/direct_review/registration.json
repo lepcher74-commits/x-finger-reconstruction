@@ -1,0 +1,16 @@
+{
+  "method": "Robust symmetric silhouette fit, uniform scale + rotation + translation. Green drawing may be occluded; NOT engineering acceptance.",
+  "scale_pixels_per_model_unit": 0.4963227973501089,
+  "rotation_degrees": -8.401071274996646,
+  "translation": [
+    77.16400512175736,
+    135.8189276912344
+  ],
+  "model_center_before_transform": [
+    741.0139227186352,
+    446.225647995416
+  ],
+  "mean_outline_error_px": 0.5712446285444567,
+  "p95_outline_error_px": 1.0151045054930663,
+  "physical_scale_confirmed": false
+}
